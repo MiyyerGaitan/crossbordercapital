@@ -28,7 +28,7 @@
     "precommit": "lint-staged",
     "vercel": "yarn workspace @se-2/nextjs vercel"
   },
-  "packageManager": "yarn@3.2.3",
+  "packageManager": "yarn@1.22.21",
   "devDependencies": {
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3"
