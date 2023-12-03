@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Address } from "../scaffold-eth";
 import { ETHToPrice } from "./EthToPrice";
-import humanizeDuration from "humanize-duration";
 import { formatEther } from "viem";
 import { useAccount } from "wagmi";
 import {
@@ -11,18 +10,20 @@ import {
   useScaffoldContractWrite,
 } from "~~/hooks/scaffold-eth";
 import { getTargetNetwork } from "~~/utils/scaffold-eth";
-
-
 import {
   Dialog,
   DialogBody,
 } from "@material-tailwind/react";
 import { SendData } from "../send-data/index";
+import { GetData } from "../get-data/index";
 
 export const StakeContractInteraction = ({ address }: { address?: string }) => {
 
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
+  const [otpGet, setOtpGet] = useState('');
   const handleOpen = () => setOpen(!open);
+  const handleOpen2 = () => setOpen2(!open2);
 
   const [args, setArgs] = useState({monto:0,otp:"", montotransfer:0});  
   
@@ -62,7 +63,7 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
   const { writeAsync: withdrawETH } = useScaffoldContractWrite({
     contractName: "Staker",
     functionName: "withdraw",
-    args: [args.otp]
+    args: [otpGet]
   });
 
   const executeContract = (e:any, otp:string, montotal:any, montotransfer:any) => {
@@ -73,6 +74,13 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
     handleOpen();
   };
 
+  const getContract = (e:any, otp:string) => {
+    e.preventDefault();
+    setOtpGet(otp)
+    console.log('getContract',otp);
+    withdrawETH()
+    handleOpen2();
+  };
   return (
     <div className="flex items-center flex-col flex-grow w-full px-4 gap-12">
       {isStakingCompleted && (
@@ -118,7 +126,7 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
             <button className="btn btn-primary" onClick={() => handleOpen() }>
               Enviar transaccion
             </button>
-            <button className="btn btn-primary" onClick={() => withdrawETH()}>
+            <button className="btn btn-primary" onClick={() => handleOpen2()}>
               Recibir transaccion
             </button>
           </div>
@@ -129,10 +137,17 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
       </div>
 
 
-       {/* Modal de Login */}
+       {/* Modal enviar Giro */}
        <Dialog open={open} handler={handleOpen} className="bg-white"  size="xxl">
           <DialogBody>
-            <SendData executeContract={executeContract} />
+            <SendData executeContract={executeContract} handleOpen={handleOpen} />
+          </DialogBody>
+        </Dialog>
+
+       {/* Modal reclamar Giro */}
+       <Dialog open={open2} handler={handleOpen2} className="bg-white"  size="xxl">
+          <DialogBody>
+            <GetData getContract={getContract}  handleOpen2={handleOpen2} />
           </DialogBody>
         </Dialog>
 
