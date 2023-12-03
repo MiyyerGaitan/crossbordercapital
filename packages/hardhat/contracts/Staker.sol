@@ -19,7 +19,7 @@ contract Staker {
   bool public openForWithdraw = true;
   bool public openForStake = true;
   string OTPfront = "hola";
-  string OTPback = "2Ql7Khu1yWX8LTykg7R";
+  string OTPback = "2Ql7Khu1yWX8LTykg7RD";
   bytes32 OTPempty = "";
   uint256 public valor = 500000000000000000;
   uint256 public constant comision = 10000; 
@@ -54,7 +54,7 @@ contract Staker {
     require((keccak256(abi.encodePacked(test)) != keccak256(abi.encodePacked(OTPempty))), "Se requiere confirmacion OTP");
     require(keccak256(abi.encodePacked(test)) == keccak256(abi.encodePacked(OTPback)), "OTP incorrecto");
     require(address(this).balance < monto, "No puedes retirar");
-    require(openForWithdraw, "La transaccion fue recibida por el pool");
+    require(openForWithdraw, "La transaccion se envio a su destino");
     (bool response, /*bytes data*/) = msg.sender.call{value: balances[msg.sender]}("");
     require(response, "La transaccion no fue exitosa");
     balances[msg.sender] = 0;
