@@ -18,8 +18,8 @@ contract Staker {
   mapping ( address => uint256 ) public balances;
   bool public openForWithdraw = true;
   bool public openForStake = true;
-  bytes32 OTPfront = "1";
-  bytes32 OTPback = "1";
+  string OTPfront = "hola";
+  string OTPback = "2Ql7Khu1yWX8LTykg7R";
   bytes32 OTPempty = "";
   uint256 public valor = 500000000000000000;
   uint256 public constant comision = 10000; 
@@ -38,22 +38,22 @@ contract Staker {
   // After some `deadline` allow anyone to call an `execute()` function
   // If the deadline has passed and the threshold is met, it should call `exampleExternalContract.complete{value: address(this).balance}()`
 
-  function execute() public {
+  function execute(uint monto) public {
 
-    //require(block.timestamp >= deadline, "La vaca sigue abierta");
-    require((keccak256(abi.encodePacked(OTPfront)) != keccak256(abi.encodePacked(OTPempty))), "Se requiere confirmacion OTP");
-    require((keccak256(abi.encodePacked(OTPfront)) == keccak256(abi.encodePacked(OTPback))), "OTP incorrecto");
-    if(address(this).balance >= monto) {
+    if(address(this).balance >= 1 ether) {
       exampleExternalContract.complete{value: address(this).balance}();
       openForWithdraw = false;
       openForStake = false;
     }
   }
+  
 
   // If the `threshold` was not met, allow everyone to call a `withdraw()` function to withdraw their balance
 
-  function withdraw () public {
+  function withdraw (string memory test) public {
     require(balances[msg.sender] > 0, "No hay transacciones pendientes");
+    require((keccak256(abi.encodePacked(test)) != keccak256(abi.encodePacked(OTPempty))), "Se requiere confirmacion OTP");
+    require(keccak256(abi.encodePacked(test)) == keccak256(abi.encodePacked(OTPback)), "OTP incorrecto");
     require(address(this).balance < monto, "No puedes retirar");
     require(openForWithdraw, "La transaccion fue recibida por el pool");
     (bool response, /*bytes data*/) = msg.sender.call{value: balances[msg.sender]}("");

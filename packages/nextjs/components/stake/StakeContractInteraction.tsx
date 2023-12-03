@@ -24,6 +24,8 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
 
+  const [args, setArgs] = useState({monto:0,otp:"", montotransfer:0});  
+  
 
   const { address: connectedAddress } = useAccount();
   const { data: StakerContract } = useDeployedContractInfo("Staker");
@@ -55,15 +57,18 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
   const { writeAsync: execute } = useScaffoldContractWrite({
     contractName: "Staker",
     functionName: "execute",
+    args: [BigInt(1)]
   });
   const { writeAsync: withdrawETH } = useScaffoldContractWrite({
     contractName: "Staker",
     functionName: "withdraw",
+    args: [args.otp]
   });
 
-  const executeContract = (e:any, id:string) => {
+  const executeContract = (e:any, otp:string, montotal:any, montotransfer:any) => {
     e.preventDefault();
-    console.log('executeContract',id);
+    setArgs({monto:montotal, otp:otp, montotransfer:montotransfer})
+    console.log('executeContract',otp);
     execute();
     handleOpen();
   };

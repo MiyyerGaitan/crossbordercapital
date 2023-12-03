@@ -68,7 +68,7 @@ export const SendData = (props:any) => {
         const someCol = collection(db, "giros");
         const girosRef = await addDoc(someCol, datosGiro);
         console.log('ID de la transacion guardado:', girosRef.id);
-        props.executeContract(e, girosRef.id);
+        props.executeContract(e, girosRef.id,montoPagar,montoConvertido);
         } else {
             alert('Por favor ingrese todos los datos');
         }
