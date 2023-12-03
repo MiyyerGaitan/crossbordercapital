@@ -21,6 +21,7 @@
     "@uniswap/v2-sdk": "^3.0.1",
     "blo": "^1.0.1",
     "daisyui": "^3.5.1",
+    "ethers": "^6.9.0",
     "firebase": "^10.7.0",
     "firebase-admin": "^11.11.1",
     "humanize-duration": "^3.28.0",
