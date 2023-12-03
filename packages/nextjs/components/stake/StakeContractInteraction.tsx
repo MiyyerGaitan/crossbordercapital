@@ -34,16 +34,6 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
   const configuredNetwork = getTargetNetwork();
 
   // Contract Read Actions
-  const { data: threshold } = useScaffoldContractRead({
-    contractName: "Staker",
-    functionName: "threshold",
-    watch: true,
-  });
-  const { data: timeLeft } = useScaffoldContractRead({
-    contractName: "Staker",
-    functionName: "timeLeft",
-    watch: true,
-  });
   const { data: myStake } = useScaffoldContractRead({
     contractName: "Staker",
     functionName: "balances",
@@ -105,10 +95,6 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
           <Address address={address} size="xl" />
         </div>
         <div className="flex items-start justify-around w-full">
-          <div className="flex flex-col items-center justify-center w-1/2">
-            <p className="block text-xl mt-0 mb-1 font-semibold">Time Left</p>
-            <p className="m-0 p-0">{timeLeft ? `${humanizeDuration(Number(timeLeft) * 1000)}` : 0}</p>
-          </div>
           <div className="flex flex-col items-center w-1/2">
             <p className="block text-xl mt-0 mb-1 font-semibold">You Staked</p>
             <span>
@@ -121,7 +107,6 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
           <div className="flex space-x-2">
             {<ETHToPrice value={stakerContractBalance != null ? stakerContractBalance.toString() : undefined} />}
             <span>/</span>
-            {<ETHToPrice value={threshold ? formatEther(threshold) : undefined} />}
           </div>
         </div>
         <div className="flex flex-col space-y-5">
