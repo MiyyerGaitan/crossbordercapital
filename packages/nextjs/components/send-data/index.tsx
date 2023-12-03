@@ -32,6 +32,7 @@ export const SendData = (props:any) => {
   const [monto, setMonto] = useState(0);
   const [montoPagar, setMontoPagar] = useState(0);
   const [montoConvertido, setMontoConvertido] = useState(null);
+  const [montoConvertidoEth, setMontoConvertidoEth] = useState('');
   const [monedaSeleccionadaOrigen, setMonedaSeleccionadaOrigen] = useState('COP'); // Valor inicial
   const [monedaSeleccionadaDestino, setMonedaSeleccionadaDestino] = useState('USD'); // Valor inicial
 
@@ -59,7 +60,7 @@ export const SendData = (props:any) => {
     // Aquí podrías guardar los datos en Firebase Firestore o realizar cualquier otra acción necesaria
     console.log('Datos del remitente:', remitente);
     console.log('Datos del receptor:', receptor);
-
+    
     try {
         if(remitente.nombre !== '' && remitente.cedula !== '' && remitente.email !== '' &&
         receptor.nombre !== '' && receptor.cedula !== '' && receptor.email !== '' &&
@@ -84,10 +85,29 @@ export const SendData = (props:any) => {
       const dataExchan = await response.json();
       console.log('dataExchan:', dataExchan);     
       const tasaDeCambioNum = dataExchan.conversion_rates[monedaSeleccionadaDestino] // Cambiar 'EUR' según tus necesidades
+      const tasaDeCambioUsdNum = dataExchan.conversion_rates.USD // Cambiar 'USD'
       console.log('dataExchan:', tasaDeCambioNum);
       const montoOriginalNum = parseFloat(monto.toString());
       setMontoPagar(montoOriginalNum * 5 /100 + montoOriginalNum);
 
+      //valor de ETH en USD
+      let totalPrice = tasaDeCambioUsdNum;
+      let totalEther;
+      fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum&order=market_cap_desc&per_page=100&page=1&sparkline=false')
+        .then((response) => {
+            if (response.ok) {
+                return response.json()
+            }
+        })
+        .then((data) => {
+            totalEther = totalPrice / data[0].current_price;
+            totalEther = totalEther.toString();
+            setMontoConvertidoEth(totalEther);  
+            console.log(totalEther, 'totalEther ******')
+
+        });
+
+    
       if (!isNaN(montoOriginalNum) && !isNaN(tasaDeCambioNum)) {
         const resultado:any = montoOriginalNum * tasaDeCambioNum;
         setMontoConvertido(resultado.toFixed(2)); // Redondear a dos decimales
@@ -144,16 +164,19 @@ export const SendData = (props:any) => {
                     onChange={handleMontoChange}
                     value={monto}
                 />
-                <br />
+                
                 <Button className="mt-6" onClick={handleConvertir}>Convertir</Button>
-                <br />
+                <br /><br />
                 {montoConvertido !== null && (
                     <>
                         <br/>
                         <Typography variant="h4" color="blue-gray">
-                            Monto Convertido: {montoConvertido} a {monedaSeleccionadaDestino}
+                            Monto Convertido a {monedaSeleccionadaDestino}: {montoConvertido} a 
                         </Typography>
-                        
+                        <Typography variant="h4" color="blue-gray">
+                            Monto Convertido a ETH: {montoConvertidoEth} 
+                        </Typography>
+
                         <Typography variant="h4" className="mt-1 font-normal text-green-500">
                             Monto a pagar
                         </Typography>
