@@ -131,7 +131,7 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
             </button>
           </div>
           <button className="btn btn-primary" onClick={() => stakeETH()}>
-            🥩 Enviar 0.5 ether!
+            🥩 Enviar Activos!
           </button>
         </div>
       </div>
