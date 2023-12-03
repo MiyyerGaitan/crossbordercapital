@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         ExampleExternalContract: {
-          address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+          address: "0x2E2Ed0Cfd3AD2f1d34481277b3204d807Ca2F8c2",
           abi: [
             {
               inputs: [],
@@ -30,7 +30,7 @@ const contracts = {
           ],
         },
         Staker: {
-          address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+          address: "0xD8a5a9b31c3C0232E196d518E89Fd8bF83AcAd43",
           abi: [
             {
               inputs: [
@@ -83,7 +83,7 @@ const contracts = {
             },
             {
               inputs: [],
-              name: "deadline",
+              name: "comision",
               outputs: [
                 {
                   internalType: "uint256",
@@ -112,6 +112,19 @@ const contracts = {
               name: "execute",
               outputs: [],
               stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "monto",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
               type: "function",
             },
             {
@@ -156,20 +169,7 @@ const contracts = {
             },
             {
               inputs: [],
-              name: "threshold",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [],
-              name: "timeLeft",
+              name: "valor",
               outputs: [
                 {
                   internalType: "uint256",

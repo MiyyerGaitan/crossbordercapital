@@ -16,10 +16,14 @@ contract Staker {
   // (Make sure to add a `Stake(address,uint256)` event and emit it for the frontend `All Stakings` tab to display)
 
   mapping ( address => uint256 ) public balances;
-  uint256 public constant threshold = 1 ether;
-  uint256 public deadline = block.timestamp + 30 seconds;
   bool public openForWithdraw = true;
   bool public openForStake = true;
+  bytes32 OTPfront = "1";
+  bytes32 OTPback = "1";
+  bytes32 OTPempty = "";
+  uint256 public valor = 500000000000000000;
+  uint256 public constant comision = 10000; 
+  uint256 public monto = valor - comision;
 
   event Stake(address, uint256);
 
@@ -36,8 +40,10 @@ contract Staker {
 
   function execute() public {
 
-    require(block.timestamp >= deadline, "La vaca sigue abierta");
-    if(address(this).balance >= threshold) {
+    //require(block.timestamp >= deadline, "La vaca sigue abierta");
+    require((keccak256(abi.encodePacked(OTPfront)) != keccak256(abi.encodePacked(OTPempty))), "Se requiere confirmacion OTP");
+    require((keccak256(abi.encodePacked(OTPfront)) == keccak256(abi.encodePacked(OTPback))), "OTP incorrecto");
+    if(address(this).balance >= monto) {
       exampleExternalContract.complete{value: address(this).balance}();
       openForWithdraw = false;
       openForStake = false;
@@ -47,23 +53,15 @@ contract Staker {
   // If the `threshold` was not met, allow everyone to call a `withdraw()` function to withdraw their balance
 
   function withdraw () public {
-    require(balances[msg.sender] > 0, "No hay fondos");
-    require(address(this).balance < threshold, "No puedes retirar");
-    require(openForWithdraw, "La vaca ya se fue");
+    require(balances[msg.sender] > 0, "No hay transacciones pendientes");
+    require(address(this).balance < monto, "No puedes retirar");
+    require(openForWithdraw, "La transaccion fue recibida por el pool");
     (bool response, /*bytes data*/) = msg.sender.call{value: balances[msg.sender]}("");
     require(response, "La transaccion no fue exitosa");
     balances[msg.sender] = 0;
   }
 
   // Add a `timeLeft()` view function that returns the time left before the deadline for the frontend
-
-  function timeLeft() public view returns(uint256) {
-    if(block.timestamp < deadline) {
-      return deadline - block.timestamp;
-    }
-
-    return 0;
-  }
 
   // Add the `receive()` special function that receives eth and calls stake()
 
