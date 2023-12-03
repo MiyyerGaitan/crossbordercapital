@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Address } from "../scaffold-eth";
 import { ETHToPrice } from "./EthToPrice";
 import humanizeDuration from "humanize-duration";
@@ -11,7 +12,19 @@ import {
 } from "~~/hooks/scaffold-eth";
 import { getTargetNetwork } from "~~/utils/scaffold-eth";
 
+
+import {
+  Dialog,
+  DialogBody,
+} from "@material-tailwind/react";
+import { SendData } from "../send-data/index";
+
 export const StakeContractInteraction = ({ address }: { address?: string }) => {
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
+
+
   const { address: connectedAddress } = useAccount();
   const { data: StakerContract } = useDeployedContractInfo("Staker");
   const { data: ExampleExternalContact } = useDeployedContractInfo("ExampleExternalContract");
@@ -57,6 +70,13 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
     contractName: "Staker",
     functionName: "withdraw",
   });
+
+  const executeContract = (e:any, id:string) => {
+    e.preventDefault();
+    console.log('executeContract',id);
+    execute();
+    handleOpen();
+  };
 
   return (
     <div className="flex items-center flex-col flex-grow w-full px-4 gap-12">
@@ -106,7 +126,7 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
         </div>
         <div className="flex flex-col space-y-5">
           <div className="flex space-x-7">
-            <button className="btn btn-primary" onClick={() => execute()}>
+            <button className="btn btn-primary" onClick={() => handleOpen() }>
               Execute!
             </button>
             <button className="btn btn-primary" onClick={() => withdrawETH()}>
@@ -118,6 +138,15 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
           </button>
         </div>
       </div>
+
+
+       {/* Modal de Login */}
+       <Dialog open={open} handler={handleOpen} className="bg-white"  size="xxl">
+          <DialogBody>
+            <SendData executeContract={executeContract} />
+          </DialogBody>
+        </Dialog>
+
     </div>
   );
 };
