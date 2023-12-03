@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         ExampleExternalContract: {
-          address: "0x96F3Ce39Ad2BfDCf92C0F6E2C2CAbF83874660Fc",
+          address: "0xB2b580ce436E6F77A5713D80887e14788Ef49c9A",
           abi: [
             {
               inputs: [],
@@ -30,7 +30,7 @@ const contracts = {
           ],
         },
         Staker: {
-          address: "0x986aaa537b8cc170761FDAC6aC4fc7F9d8a20A8C",
+          address: "0xB377a2EeD7566Ac9fCb0BA673604F9BF875e2Bab",
           abi: [
             {
               inputs: [

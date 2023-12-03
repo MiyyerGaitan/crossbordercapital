@@ -96,35 +96,34 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
         }`}
       >
         <div className="flex flex-col w-full items-center">
-          <p className="block text-2xl mt-0 mb-2 font-semibold">Staker Contract</p>
+          <p className="block text-2xl mt-0 mb-2 font-semibold">Pool de giros</p>
           <Address address={address} size="xl" />
         </div>
         <div className="flex items-start justify-around w-full">
           <div className="flex flex-col items-center w-1/2">
-            <p className="block text-xl mt-0 mb-1 font-semibold">You Staked</p>
+            <p className="block text-xl mt-0 mb-1 font-semibold">Monto de destino</p>
             <span>
               {myStake ? formatEther(myStake) : 0} {configuredNetwork.nativeCurrency.symbol}
             </span>
           </div>
         </div>
         <div className="flex flex-col items-center shrink-0 w-full">
-          <p className="block text-xl mt-0 mb-1 font-semibold">Total Staked</p>
+          <p className="block text-xl mt-0 mb-1 font-semibold">Recompensas de la pool</p>
           <div className="flex space-x-2">
             {<ETHToPrice value={stakerContractBalance != null ? stakerContractBalance.toString() : undefined} />}
-            <span>/</span>
           </div>
         </div>
         <div className="flex flex-col space-y-5">
           <div className="flex space-x-7">
             <button className="btn btn-primary" onClick={() => handleOpen() }>
-              Execute!
+              Enviar transaccion
             </button>
             <button className="btn btn-primary" onClick={() => withdrawETH()}>
-              Withdraw
+              Recibir transaccion
             </button>
           </div>
           <button className="btn btn-primary" onClick={() => stakeETH()}>
-            🥩 Stake 0.5 ether!
+            🥩 Enviar 0.5 ether!
           </button>
         </div>
       </div>

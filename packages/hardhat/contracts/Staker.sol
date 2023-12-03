@@ -46,7 +46,6 @@ contract Staker {
       openForStake = false;
     }
   }
-  
 
   // If the `threshold` was not met, allow everyone to call a `withdraw()` function to withdraw their balance
 
