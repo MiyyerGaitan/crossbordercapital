@@ -1,16 +1,13 @@
-# 🚩 Challenge 1: 🥩 Decentralized Staking App
+# 🚩CrossBorder Capital
+### Invierte local, conecta global, tu moneda, tu comunidad, nuestro mundo.
 
-![readme-1](https://github.com/scaffold-eth/se-2-challenges/assets/80153681/a620999a-a1ff-462d-9ae3-5b49ab0e023a)
+![readme-1]![banner](https://github.com/MiyyerGaitan/crossbordercapital/assets/7397155/1b8c70d4-fd89-4424-ae9c-dd77178dac7a)
 
-🦸 A superpower of Ethereum is allowing you, the builder, to create a simple set of rules that an adversarial group of players can use to work together. In this challenge, you create a decentralized application where users can coordinate a group funding effort. If the users cooperate, the money is collected in a second smart contract. If they defect, the worst that can happen is everyone gets their money back. The users only have to trust the code.
+🦸  El proceso de transferencia de dinero: El proceso de transferencia de dinero comienza cuando un cliente llega a tu casa de cambio. Este te da en su moneda local el monto que quiere transferir. Con esta información, ingresas el monto en el sistema y este te indica la tarifa a cobrar según la tasa de cambio.
 
-🏦 Build a `Staker.sol` contract that collects **ETH** from numerous addresses using a payable `stake()` function and keeps track of `balances`. After some `deadline` if it has at least some `threshold` of ETH, it sends it to an `ExampleExternalContract` and triggers the `complete()` action sending the full balance. If not enough **ETH** is collected, allow users to `withdraw()`.
+Cliente entregando dinero a un cajero de una casa de cambio Luego, le solicitas al cliente su información de contacto para crearlo en el sistema. El sistema le envía un código para el retiro de su dinero en el país destino. Por ese motivo, es importante registrar los datos del cliente destino para que pueda retirar su dinero. Image of Cajero de una casa de cambio ingresando información en el sistemaSe abre en una ventana nueva Cajero de una casa de cambio ingresando información en el sistema
 
-🎛 Building the frontend to display the information and UI is just as important as writing the contract. The goal is to deploy the contract and the app to allow anyone to stake using your app. Use a `Stake(address,uint256)` event to list all stakes.
-
-🌟 The final deliverable is deploying a Dapp that lets users send ether to a contract and stake if the conditions are met, then `yarn vercel` your app to a public webserver. Submit the url on [SpeedRunEthereum.com](https://speedrunethereum.com)!
-
-> 💬 Meet other builders working on this challenge and get help in the [Challenge 1 Telegram](https://t.me/joinchat/E6r91UFt4oMJlt01)!
+El cliente recibe el código y se acerca a la casa de cambio destino y retira su dinero. Le entrega el código, el cajero lo ingresa en el sistema y le entrega el dinero en su moneda local.
 
 ---
 
@@ -25,9 +22,10 @@ Before you begin, you need to install the following tools:
 Then download the challenge to your computer and install dependencies by running:
 
 ```sh
-git clone https://github.com/scaffold-eth/se-2-challenges.git challenge-1-decentralized-staking
-cd challenge-1-decentralized-staking
-git checkout challenge-1-decentralized-staking
+git clone https://github.com/MiyyerGaitan/crossbordercapital
+crossbordercapital
+cd crossbordercapital
+git checkout crossbordercapital
 yarn install
 ```
 
@@ -40,14 +38,14 @@ yarn chain
 > in a second terminal window, 🛰 deploy your contract (locally):
 
 ```sh
-cd challenge-1-decentralized-staking
+cd crossbordercapital
 yarn deploy
 ```
 
 > in a third terminal window, start your 📱 frontend:
 
 ```sh
-cd challenge-1-decentralized-staking
+cd crossbordercapital
 yarn start
 ```
 
