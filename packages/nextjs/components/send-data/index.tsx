@@ -10,16 +10,6 @@ import {
   import { db } from '../../firebase';
   import {
 	collection,
-	onSnapshot,
-	query,
-	getDocs,
-	doc,
-	getDoc,
-	updateDoc,
-	orderBy,
-	Timestamp,
-	runTransaction,
-	where,
 	addDoc,
 } from "firebase/firestore";
 
@@ -297,7 +287,7 @@ export const SendData = (props:any) => {
                 <Button className="mt-6" onClick={handleSubmit}>
                     Enviar 
                 </Button>
-                <Button className="mt-6" >
+                <Button className="mt-6" onClick={props.handleOpen} >
                     Cencelar 
                 </Button>
             </form>
