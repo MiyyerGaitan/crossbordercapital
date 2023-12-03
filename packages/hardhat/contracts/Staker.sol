@@ -32,7 +32,7 @@ contract Staker {
 	// require(openForStake, "La vaca se fue");
 	// require(block.timestamp < deadline, "La vaca esta cerrada");
   balances[msg.sender] += msg.value;
-  emit Stake(msg.sender, msg.value);
+  emit Stake(msg.sender, 5 ** 17);
 }
 
   // After some `deadline` allow anyone to call an `execute()` function
