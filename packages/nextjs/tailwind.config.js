@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}", "./utils/**/*.{js,ts,jsx,tsx}"],
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}", 
+    "./components/**/*.{js,ts,jsx,tsx}", 
+    "./utils/**/*.{js,ts,jsx,tsx}"],
   plugins: [require("daisyui")],
   darkTheme: "scaffoldEthDark",
   // DaisyUI theme colors
@@ -8,19 +13,19 @@ module.exports = {
     themes: [
       {
         scaffoldEth: {
-          primary: "#C8F5FF",
+          primary: "#000",
           "primary-content": "#026262",
-          secondary: "#89d7e9",
-          "secondary-content": "#088484",
-          accent: "#026262",
-          "accent-content": "#E9FBFF",
-          neutral: "#088484",
-          "neutral-content": "#F0FCFF",
-          "base-100": "#F0FCFF",
-          "base-200": "#E1FAFF",
-          "base-300": "#C8F5FF",
-          "base-content": "#088484",
-          info: "#026262",
+          secondary: "#ffa500",
+          "secondary-content": "#fff",
+          accent: "#ffa500",
+          "accent-content": "#ffa500",
+          neutral: "#fff",
+          "neutral-content": "#fff",
+          "base-100": "#000",
+          "base-200": "#000",
+          "base-300": "#ccc",
+          "base-content": "#fff",
+          info: "#ffa500",
           success: "#34EEB6",
           warning: "#FFCF72",
           error: "#FF8863",
@@ -39,11 +44,11 @@ module.exports = {
           secondary: "#107575",
           "secondary-content": "#E9FBFF",
           accent: "#C8F5FF",
-          "accent-content": "#088484",
+          "accent-content": "#fff",
           neutral: "#E9FBFF",
           "neutral-content": "#11ACAC",
           "base-100": "#11ACAC",
-          "base-200": "#088484",
+          "base-200": "#fff",
           "base-300": "#026262",
           "base-content": "#E9FBFF",
           info: "#C8F5FF",
@@ -117,4 +122,4 @@ module.exports = {
       },
     },
   },
-};
+});
