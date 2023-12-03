@@ -3,9 +3,9 @@
 
 ![readme-1]![banner](https://github.com/MiyyerGaitan/crossbordercapital/assets/7397155/1b8c70d4-fd89-4424-ae9c-dd77178dac7a)
 
-🦸  El proceso de transferencia de dinero: El proceso de transferencia de dinero comienza cuando un cliente llega a tu casa de cambio. Este te da en su moneda local el monto que quiere transferir. Con esta información, ingresas el monto en el sistema y este te indica la tarifa a cobrar según la tasa de cambio.
+🦸  El proceso de transferencia de activos: El proceso de transferencia de activos comienza cuando un cliente llega a tu casa de cambio. Este te pide el monto que quiere transferir. Con esta información, ingresas el monto en el sistema y este te indica la tarifa a cobrar según la tasa de cambio.
 
-Cliente entregando dinero a un cajero de una casa de cambio Luego, le solicitas al cliente su información de contacto para crearlo en el sistema. El sistema le envía un código para el retiro de su dinero en el país destino. Por ese motivo, es importante registrar los datos del cliente destino para que pueda retirar su dinero. Image of Cajero de una casa de cambio ingresando información en el sistemaSe abre en una ventana nueva Cajero de una casa de cambio ingresando información en el sistema
+Cliente entregando activos a un cajero de una casa de cambio Luego, le solicitas al cliente su información de contacto para crearlo en el sistema. El sistema le envía un código para el retiro de sus activos en el país destino. Por ese motivo, es importante registrar los datos del cliente destino para que pueda retirar su dinero. Image of Cajero de una casa de cambio ingresando información en el sistemaSe abre en una ventana nueva Cajero de una casa de cambio ingresando información en el sistema
 
 El cliente recibe el código y se acerca a la casa de cambio destino y retira su dinero. Le entrega el código, el cajero lo ingresa en el sistema y le entrega el dinero en su moneda local.
 
