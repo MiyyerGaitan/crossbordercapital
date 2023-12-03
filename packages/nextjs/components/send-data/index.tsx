@@ -118,7 +118,7 @@ export const SendData = (props:any) => {
             
             <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit}>
                 <Typography color="gray" className="mt-1 font-normal">
-                    Moneda Destino
+                    Moneda Origen
                 </Typography>
                 <div className="flex w-72 flex-col gap-6">
                     <select name="monedaSeleccionadaOrigen" value={monedaSeleccionadaOrigen} onChange={(e) => handleChange(e, 'origen')}>
@@ -129,7 +129,7 @@ export const SendData = (props:any) => {
                     </select>
                 </div>
                 <Typography color="gray" className="mt-1 font-normal">
-                    Moneda destino
+                    Moneda Destino
                 </Typography>
                 <div className="flex w-72 flex-col gap-6">
                     <select name="monedaSeleccionadaDestino" value={monedaSeleccionadaDestino} onChange={(e) => handleChange(e, 'destino')}>

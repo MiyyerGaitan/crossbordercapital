@@ -58,7 +58,7 @@ export const GetData = (props:any) => {
                     Enviar 
                 </Button>
                 <Button className="mt-6" onClick={props.handleOpen2} >
-                    Cencelar 
+                    Cancelar 
                 </Button>
             </form>
             </Card>

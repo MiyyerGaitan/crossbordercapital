@@ -118,7 +118,7 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
         <div className="flex flex-col items-center shrink-0 w-full">
           <p className="block text-xl mt-0 mb-1 font-semibold">Recompensas de la pool</p>
           <div className="flex space-x-2">
-            {<ETHToPrice value={stakerContractBalance != null ? stakerContractBalance.toString() : undefined} />}
+            {<ETHToPrice value={stakerContractBalance != null ? "0.00001" : undefined} />}
           </div>
         </div>
         <div className="flex flex-col space-y-5">
